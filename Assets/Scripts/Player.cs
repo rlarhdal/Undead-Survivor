@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public FloatingJoystick joystick;
     public float speed;
     public Scanner scanner;
+    public Hand[] hands;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
@@ -21,11 +22,15 @@ public class Player : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        hands = GetComponentsInChildren<Hand>(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         inputVec.x = joystick.Horizontal;
         inputVec.y = joystick.Vertical;
 
@@ -34,9 +39,8 @@ public class Player : MonoBehaviour
     //물리연삼 프레임은 FixedUpdate
     void FixedUpdate()
     {
-        /*rigid.AddForce(inputVec);
-
-        rigid.velocity = inputVec;*/
+        if (!GameManager.instance.isLive)
+            return;
 
         Vector2 moveVec = inputVec.normalized * speed * Time.fixedDeltaTime; //fixedDeltaTime => fixedUpdate, deltaTime => Update
         rigid.MovePosition(rigid.position + moveVec);
@@ -44,6 +48,9 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         anim.SetFloat("Speed", inputVec.magnitude);
 
         if (inputVec.x != 0)
