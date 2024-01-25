@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
 
     public void LevelUp(float damage, int cnt)
     {
-        this.damage = damage;
+        this.damage = damage * Charater.Damage;
         this.cnt += cnt;
 
         if (id == 0)
@@ -60,8 +60,8 @@ public class Weapon : MonoBehaviour
 
         //Property Set
         id = data.itemId;
-        damage = data.baseDamage;
-        cnt = data.baseCount;
+        damage = data.baseDamage * Charater.Damage;
+        cnt = data.baseCount + Charater.Count;
 
         for(int i = 0; i < GameManager.instance.pool.prefabs.Length; i++)
         {
@@ -74,11 +74,11 @@ public class Weapon : MonoBehaviour
         switch (id)
         {
             case 0:
-                speed = 150; //+ => 시계반대방향회전 / - => 시계방향회전 Update문에서 back을 썼기 때문에 양수로 설정
+                speed = 150 * Charater.WeaponSpeed; //+ => 시계반대방향회전 / - => 시계방향회전 Update문에서 back을 썼기 때문에 양수로 설정
                 Batch();
                 break;
             default:
-                speed = 0.3f;
+                speed = 0.5f * Charater.WeaponRate;
                 break;
         }
 
