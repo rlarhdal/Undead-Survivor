@@ -5,6 +5,11 @@ Undead Survivor is a project inspired by GoldMetal's [유니티 뱀서라이크]
 
 <br/>
 
+### 개발환경
+![Unity Badge](https://img.shields.io/badge/unity-000000?style=flat&logo=unity&logoColor=white) 2022.3.16f1ver.
+
+<br/>
+
 ### 기능 / Function
 
 - 기능 1: 2D 무한맵
