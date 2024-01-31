@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -38,10 +39,8 @@ public class Player : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-        inputVec.x = joystick.Horizontal;
-        inputVec.y = joystick.Vertical;
-
     }
+
 
     //물리연삼 프레임은 FixedUpdate
     void FixedUpdate()
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-        Vector2 moveVec = inputVec.normalized * speed * Time.fixedDeltaTime; //fixedDeltaTime => fixedUpdate, deltaTime => Update
+        Vector2 moveVec = inputVec * speed * Time.fixedDeltaTime; //fixedDeltaTime => fixedUpdate, deltaTime => Update
         rigid.MovePosition(rigid.position + moveVec);
     }
 
@@ -82,5 +81,9 @@ public class Player : MonoBehaviour
             anim.SetTrigger("Dead");
             GameManager.instance.GameOver();
         }
+    }
+    void OnMove(InputValue value)
+    {
+        inputVec = value.Get<Vector2>();
     }
 }

@@ -80,11 +80,13 @@ public class Enemy : MonoBehaviour
 
         health -= collision.GetComponent<Bullet>().damage;
         StartCoroutine(KnockBack());
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Melee);
 
         if (health > 0)
         {
             //..Live
             anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
         }
         else
         {
@@ -96,6 +98,8 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
+            if(GameManager.instance.isLive)
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
 
         }
     }
