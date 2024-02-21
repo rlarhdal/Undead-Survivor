@@ -34,5 +34,5 @@ Undead Survivor is a project inspired by GoldMetal's [유니티 뱀서라이크]
 [![YouTube Badge](https://img.shields.io/badge/youtube-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/@goldmetal) 골드메탈/유니티 뱀서라이크
 
 ### 라이선스 / License
-이 프로젝트는 Unity, Microsoft 라이선스 하에 릴리스되었습니다.
+이 프로젝트는 Unity, Microsoft 라이선스 하에 릴리스되었습니다.  
 This project is released under the Unity and Microsoft licenses.
